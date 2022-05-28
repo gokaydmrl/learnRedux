@@ -23,13 +23,13 @@ const todoSlice = createSlice({
 
     doneTodo: (state, action) => {
       const { id } = action.payload;
-      console.log("statetodos", state.todos);
-      const item = state.todos.find((item) => {
+      console.log("state", state);
+      const item = state.find((item) => {
         return item.id === id;
       });
       item.completed = !item.completed;
       console.log("compl?", item.completed);
-      console.log("for done", action.payload);
+      console.log("for done action", action);
     },
   },
 });

@@ -8,10 +8,10 @@ const TodoList = () => {
   const dispatch = useDispatch();
 
   const todos = useSelector((state) => state.todos);
+console.log(todos);
   const handleChange = (id) => {
-    dispatch(doneTodo({id}));
+    dispatch(doneTodo({ id }));
     console.log("clicked", id);
-    
   };
 
   return (
@@ -22,7 +22,7 @@ const TodoList = () => {
           key={todo.id}
           title={todo.title}
           checked={todo.completed}
-          handleChange={()=> handleChange(todo.id)}
+          handleChange={() => handleChange(todo.id)}
         />
       ))}
     </ul>
