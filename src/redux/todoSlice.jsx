@@ -32,13 +32,11 @@ const todoSlice = createSlice({
       console.log("for done action", action);
     },
 
-    removeTodo: (action, state) => {
-      // const { id } = action.payload;
-      state = state.filter((todo) => {
+    removeTodo: (state, action) => {
+      return state.filter((todo) => {
         return todo.id !== action.payload.id;
       });
-      console.log("newstate:", newstate);
-    }
+    },
   },
 });
 

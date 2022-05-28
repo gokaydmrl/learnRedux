@@ -13,10 +13,10 @@ const TodoList = () => {
 
 
   const handleChange = (id) => {
-    dispatch(doneTodo({ id }));
+    dispatch(doneTodo({ id}));
   };
 
-  const removeTodo = (id) => {
+  const handleRemoveTodo = (id) => {
     dispatch(removeTodo({ id }))
   };
 
@@ -33,7 +33,7 @@ const TodoList = () => {
             title={todo.title}
             checked={todo.completed}
             handleChange={() => handleChange(todo.id)}
-            removeTodo={() => removeTodo(todo.id)}
+            removeTodo={() => handleRemoveTodo(todo.id)}
           />
         </div>
       ))}

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TodoItem = ({ title, checked, completed, onChange, handleChange, removeTodo, onClick }) => {
+const TodoItem = ({ title, completed, handleChange, removeTodo }) => {
   
 
 
