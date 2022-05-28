@@ -4,7 +4,7 @@ const todoSlice = createSlice({
   name: "todos",
   initialState: [
     {
-      id: Math.random,
+      id: Math.random(),
       title: "do learn redux",
       completed: false,
     },
@@ -23,11 +23,11 @@ const todoSlice = createSlice({
 
     doneTodo: (state, action) => {
       const { id } = action.payload;
-      console.log(id);
+      console.log("state", state);
       const item = state.todos.find((item) => {
-        item.id === id;
+        return item.id === id;
       });
-      item.completed === !item.completed;
+      item.completed = !item.completed;
       console.log("compl?", item.completed);
       console.log("for done", action.payload);
     },

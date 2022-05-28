@@ -4,13 +4,14 @@ import { useSelector } from "react-redux";
 import { doneTodo } from "../redux/todoSlice";
 import { useDispatch } from "react-redux";
 
-const TodoList = (id) => {
+const TodoList = () => {
   const dispatch = useDispatch();
 
   const todos = useSelector((state) => state.todos);
-  const handleChange = () => {
-    dispatch(doneTodo({id: item.id}));
-    console.log(id);
+  const handleChange = (id) => {
+    dispatch(doneTodo({id}));
+    console.log("clicked", id);
+    
   };
 
   return (
@@ -21,7 +22,7 @@ const TodoList = (id) => {
           key={todo.id}
           title={todo.title}
           checked={todo.completed}
-          onChange={handleChange}
+          handleChange={()=> handleChange(todo.id)}
         />
       ))}
     </ul>
