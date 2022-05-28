@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TodoItem = ({ title, checked, completed, onChange, handleChange }) => {
+const TodoItem = ({ title, checked, completed, onChange, handleChange, removeTodo, onClick }) => {
   
 
 
@@ -8,7 +8,7 @@ const TodoItem = ({ title, checked, completed, onChange, handleChange }) => {
     <ul>
     
       <span>  <input type="checkbox" checked={completed} onChange={handleChange} /></span> <label >{ title}</label> 
-        
+        <button onClick={removeTodo}>sil</button>
     </ul>
   )
 }

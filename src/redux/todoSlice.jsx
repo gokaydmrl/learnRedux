@@ -31,9 +31,17 @@ const todoSlice = createSlice({
       console.log("compl?", item.completed);
       console.log("for done action", action);
     },
+
+    removeTodo: (action, state) => {
+      // const { id } = action.payload;
+      state = state.filter((todo) => {
+        return todo.id !== action.payload.id;
+      });
+      console.log("newstate:", newstate);
+    }
   },
 });
 
-export const { addTodo, doneTodo } = todoSlice.actions;
+export const { addTodo, doneTodo, removeTodo } = todoSlice.actions;
 
 export default todoSlice.reducer;
