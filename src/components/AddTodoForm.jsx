@@ -18,14 +18,16 @@ const AddTodoForm = () => {
   };
 
   return (
+    <div className="todoinput">
     <form onSubmit={handleSubmit}>
-      <input
+      <input 
         placeholder="bugün naapcan"
         value={title}
         onChange={handleChange}
       />
       <button type="submit"> ekle </button>
-    </form>
+      </form>
+      </div>
   );
 };
 

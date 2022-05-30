@@ -9,6 +9,7 @@ const todoSlice = createSlice({
       completed: false,
     },
   ],
+activeCategory: "all",
   reducers: {
     addTodo: (state, action) => {
       const newTodo = {
@@ -28,6 +29,7 @@ const todoSlice = createSlice({
         return item.id === id;
       });
       item.completed = !item.completed;
+
       console.log("compl?", item.completed);
       console.log("for done action", action);
     },
@@ -37,9 +39,13 @@ const todoSlice = createSlice({
         return todo.id !== action.payload.id;
       });
     },
+
+    changeActiveCategory: (state, action) => {
+      state.activeCategory = action.payload;
+    }
   },
 });
 
-export const { addTodo, doneTodo, removeTodo } = todoSlice.actions;
+export const { addTodo, doneTodo, removeTodo, changeActiveCategory } = todoSlice.actions;
 
 export default todoSlice.reducer;
