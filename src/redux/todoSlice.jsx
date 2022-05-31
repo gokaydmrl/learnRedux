@@ -9,7 +9,20 @@ const todoSlice = createSlice({
       completed: false,
     },
   ],
-activeCategory: "all",
+  activeCategory: [
+    {
+      cat: "all",
+      id: 1,
+    },
+    {
+      cat: "done",
+      id: 2,
+    },
+    {
+      cat: "waiting",
+      id: 3,
+    },
+  ],
   reducers: {
     addTodo: (state, action) => {
       const newTodo = {
@@ -41,11 +54,13 @@ activeCategory: "all",
     },
 
     changeActiveCategory: (state, action) => {
-      state.activeCategory = action.payload;
-    }
+      const { id } = action.payload;
+      state.activeCategory = id;
+    },
   },
 });
 
-export const { addTodo, doneTodo, removeTodo, changeActiveCategory } = todoSlice.actions;
+export const { addTodo, doneTodo, removeTodo, changeActiveCategory } =
+  todoSlice.actions;
 
 export default todoSlice.reducer;
