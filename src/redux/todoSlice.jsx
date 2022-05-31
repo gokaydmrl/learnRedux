@@ -2,27 +2,18 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const todoSlice = createSlice({
   name: "todos",
-  initialState: [
+  initialState: {
+   todoValues: [
     {
       id: Math.random(),
       title: "do learn redux",
       completed: false,
-    },
-  ],
-  activeCategory: [
-    {
-      cat: "all",
-      id: 1,
-    },
-    {
-      cat: "done",
-      id: 2,
-    },
-    {
-      cat: "waiting",
-      id: 3,
-    },
-  ],
+      },
+    ],
+    activeCategory: "all"
+  },
+  
+ 
   reducers: {
     addTodo: (state, action) => {
       const newTodo = {
@@ -32,13 +23,13 @@ const todoSlice = createSlice({
       };
       //   console.log("action:", action);
       //   console.log("payload:", action.payload);
-      state.push(newTodo);
+      state.todoValues.push(newTodo);
     },
 
     doneTodo: (state, action) => {
       const { id } = action.payload;
-      console.log("state", state);
-      const item = state.find((item) => {
+      console.log("sliceta state", state.todoValues);
+      const item = state.todoValues.find((item) => {
         return item.id === id;
       });
       item.completed = !item.completed;
@@ -47,15 +38,14 @@ const todoSlice = createSlice({
       console.log("for done action", action);
     },
 
-    removeTodo: (state, action) => {
-      return state.filter((todo) => {
-        return todo.id !== action.payload.id;
+    removeTodo: (state, action) => {   
+      return state.todoValues.filter((todo) => {
+        return todo.id !== action.payload.id
       });
     },
 
     changeActiveCategory: (state, action) => {
-      const { id } = action.payload;
-      state.activeCategory = id;
+      state.todos.activeCategory = action.payload;
     },
   },
 });

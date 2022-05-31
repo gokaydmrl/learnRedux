@@ -10,13 +10,13 @@ import { changeActiveCategory } from "../redux/todoSlice";
 
 const TodoList = () => {
   const dispatch = useDispatch();
-  const activeCategory = useSelector((state) => state.activeCategory);
+  const activeCategory = useSelector((state) => state.todos.activeCategory);
 
 console.log("actCat", activeCategory);
 
-  const todos = useSelector((state) => state.todos);
+  const todosList = useSelector((state) => state.todos.todoValues);
 
-console.log("todosss", todos);
+console.log("todosss", todosList);
 
   const handleChange = (id) => {
     dispatch(doneTodo({ id }));
@@ -27,28 +27,21 @@ console.log("todosss", todos);
   };
 
 
-//  const filters = todos.filter((todo) => {
-//   if (activeCategory !== "all") 
-//        {activeCategory === "done"
-//          ? todo.completed === true
-//          : todo.completed === false;}
-//      })
 
-//   console.log(filters);
 
 
   return (
     <div>
-      <button onClick={() => dispatch(changeActiveCategory())}>all</button>
+      {/* <button onClick={() => dispatch(changeActiveCategory())}>all</button>
       <button onClick={() => dispatch(changeActiveCategory("done"))}>
         done
       </button>
       <button onClick={() => dispatch(changeActiveCategory("waiting"))}>
         waiting
-      </button>
+      </button> */}
 
       <ul>
-        {todos.map((todo) => (
+        {todosList.map((todo) => (
           <div
             key={todo.id}
             className={todo.completed === false ? "redtext" : "blacktext"}
