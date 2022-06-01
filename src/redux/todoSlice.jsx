@@ -3,17 +3,16 @@ import { createSlice } from "@reduxjs/toolkit";
 const todoSlice = createSlice({
   name: "todos",
   initialState: {
-   todoValues: [
-    {
-      id: Math.random(),
-      title: "do learn redux",
-      completed: false,
+    todoValues: [
+      {
+        id: Math.random(),
+        title: "do learn redux",
+        completed: false,
       },
     ],
-    activeCategory: "all"
+    activeCategory: "all",
   },
-  
- 
+
   reducers: {
     addTodo: (state, action) => {
       const newTodo = {
@@ -38,14 +37,15 @@ const todoSlice = createSlice({
       console.log("for done action", action);
     },
 
-    removeTodo: (state, action) => {   
-      return state.todoValues.filter((todo) => {
-        return todo.id !== action.payload.id
+    removeTodo: (state, action) => {
+      
+      state.todoValues = state.todoValues.filter((item) => {
+        return item.id !== action.payload.id;
       });
     },
 
     changeActiveCategory: (state, action) => {
-      state.todos.activeCategory = action.payload;
+      state.activeCategory = action.payload;
     },
   },
 });

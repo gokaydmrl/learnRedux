@@ -6,17 +6,15 @@ import { useDispatch } from "react-redux";
 import { removeTodo } from "../redux/todoSlice";
 import { changeActiveCategory } from "../redux/todoSlice";
 
-
-
 const TodoList = () => {
   const dispatch = useDispatch();
-  const activeCategory = useSelector((state) => state.todos.activeCategory);
+  let activeCategory = useSelector((state) => state.todos.activeCategory);
 
-console.log("actCat", activeCategory);
+  console.log("actCat", activeCategory);
 
-  const todosList = useSelector((state) => state.todos.todoValues);
+  let todosList = useSelector((state) => state.todos.todoValues);
 
-console.log("todosss", todosList);
+  console.log("todosss", todosList);
 
   const handleChange = (id) => {
     dispatch(doneTodo({ id }));
@@ -26,22 +24,28 @@ console.log("todosss", todosList);
     dispatch(removeTodo({ id }));
   };
 
+  let categorized = todosList.filter((item) => { 
+    if (activeCategory !== "all") {
+      activeCategory === "done"
+        ? item.completed === true
+        : item.completed === false
+    }}
+  );
 
-
-
+  console.log("if içinde", categorized);
 
   return (
     <div>
-      {/* <button onClick={() => dispatch(changeActiveCategory())}>all</button>
+      <button onClick={() => dispatch(changeActiveCategory("all"))}>all</button>
       <button onClick={() => dispatch(changeActiveCategory("done"))}>
         done
       </button>
       <button onClick={() => dispatch(changeActiveCategory("waiting"))}>
         waiting
-      </button> */}
+      </button>
 
       <ul>
-        {todosList.map((todo) => (
+        {categorized.map((todo) => (
           <div
             key={todo.id}
             className={todo.completed === false ? "redtext" : "blacktext"}
