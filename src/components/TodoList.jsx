@@ -24,28 +24,33 @@ const TodoList = () => {
     dispatch(removeTodo({ id }));
   };
 
-  let categorized = todosList.filter((item) => { 
-    if (activeCategory !== "all") {
-      activeCategory === "done"
-        ? item.completed === true
-        : item.completed === false
-    }}
-  );
+// if(activeCategory === "done"){ return todosList.filter((item) => item.completed === true)}
 
-  console.log("if içinde", categorized);
+
+
+  // if (activeCategory !== "all") {
+  //   todosList.filter((item) => {
+     
+  //     activeCategory === "done"
+  //       ? item.completed === true
+  //       : item.completed === false
+  //   }
+  //   )
+  // };
+
 
   return (
     <div>
-      <button onClick={() => dispatch(changeActiveCategory("all"))}>all</button>
+      {/* <button onClick={() => dispatch(changeActiveCategory("all"))}>all</button>
       <button onClick={() => dispatch(changeActiveCategory("done"))}>
         done
       </button>
       <button onClick={() => dispatch(changeActiveCategory("waiting"))}>
         waiting
-      </button>
+      </button> */}
 
       <ul>
-        {categorized.map((todo) => (
+        {todosList.map((todo) => (
           <div
             key={todo.id}
             className={todo.completed === false ? "redtext" : "blacktext"}
