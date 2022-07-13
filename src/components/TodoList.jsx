@@ -24,30 +24,35 @@ const TodoList = () => {
     dispatch(removeTodo({ id }));
   };
 
-// if(activeCategory === "done"){ return todosList.filter((item) => item.completed === true)}
-
-
+  // if (activeCategory === "done") {
+  //   return todosList.filter((item) => item.completed === true);
+  // }
 
   // if (activeCategory !== "all") {
-  //   todosList.filter((item) => {
-     
-  //     activeCategory === "done"
-  //       ? item.completed === true
-  //       : item.completed === false
-  //   }
-  //   )
-  // };
+  //   todosList.filter((todoItem) => {
+  //     activeCategory === "waiting" && todoItem.completed === false;
+  //   });
+  // }
 
+  if (activeCategory !== "all") {
+    if (activeCategory === "done") {
+      todosList = todosList.filter((item) => item.completed === true);
+    } else {
+      todosList = todosList.filter(
+        (waitingItem) => waitingItem.completed === false
+      );
+    }
+  }
 
   return (
     <div>
-      {/* <button onClick={() => dispatch(changeActiveCategory("all"))}>all</button>
+      <button onClick={() => dispatch(changeActiveCategory("all"))}>all</button>
       <button onClick={() => dispatch(changeActiveCategory("done"))}>
         done
       </button>
       <button onClick={() => dispatch(changeActiveCategory("waiting"))}>
         waiting
-      </button> */}
+      </button>
 
       <ul>
         {todosList.map((todo) => (

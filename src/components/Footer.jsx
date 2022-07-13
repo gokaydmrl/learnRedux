@@ -1,17 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-
 const Footer = () => {
   const todos = useSelector((state) => state.todos.todoValues);
-
 
   const filteredTodos = todos.filter((todo) => {
     return todo.completed === false;
   });
 
-console.log("footerda", filteredTodos);
-
+  console.log("footerda", filteredTodos);
 
   return (
     <div className="list">
