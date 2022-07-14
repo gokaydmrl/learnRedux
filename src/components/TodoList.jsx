@@ -5,11 +5,13 @@ import { doneTodo } from "../redux/todoSlice";
 import { useDispatch } from "react-redux";
 import { removeTodo } from "../redux/todoSlice";
 import { changeActiveCategory } from "../redux/todoSlice";
+import { Box } from "@mui/system";
+import "../App.css";
+import { Button } from "@mui/material";
 
 const TodoList = () => {
   const dispatch = useDispatch();
   let activeCategory = useSelector((state) => state.todos.activeCategory);
-
   console.log("actCat", activeCategory);
 
   let todosList = useSelector((state) => state.todos.todoValues);
@@ -24,16 +26,6 @@ const TodoList = () => {
     dispatch(removeTodo({ id }));
   };
 
-  // if (activeCategory === "done") {
-  //   return todosList.filter((item) => item.completed === true);
-  // }
-
-  // if (activeCategory !== "all") {
-  //   todosList.filter((todoItem) => {
-  //     activeCategory === "waiting" && todoItem.completed === false;
-  //   });
-  // }
-
   if (activeCategory !== "all") {
     if (activeCategory === "done") {
       todosList = todosList.filter((item) => item.completed === true);
@@ -45,33 +37,55 @@ const TodoList = () => {
   }
 
   return (
-    <div>
-      <button onClick={() => dispatch(changeActiveCategory("all"))}>all</button>
-      <button onClick={() => dispatch(changeActiveCategory("done"))}>
-        done
-      </button>
-      <button onClick={() => dispatch(changeActiveCategory("waiting"))}>
-        waiting
-      </button>
+    <Box
+      sx={{
+        display: "grid",
+        alignItems: "center",
+        justifyContent: "center",
+        border: "1px solid black",
+      }}
+    >
+      <Box sx={{ justifyContent: "center", display: "flex" }}>
+        {" "}
+        <Button 
+          variant="outlined"
+          className="catButton"
+          onClick={() => dispatch(changeActiveCategory("all"))}
+        >
+          all
+        </Button>
+        <Button
+          variant="outlined"
+          className="catButton"
+          onClick={() => dispatch(changeActiveCategory("done"))}
+        >
+          done
+        </Button>
+        <Button
+          variant="outlined"
+          className="catButton"
+          onClick={() => dispatch(changeActiveCategory("waiting"))}
+        >
+          waiting
+        </Button>
+      </Box>
 
-      <ul>
-        {todosList.map((todo) => (
-          <div
+      {todosList.map((todo) => (
+        <div
+          key={todo.id}
+          className={todo.completed === false ? "redtext" : "blacktext"}
+        >
+          <TodoItem
+            id={todo.id}
             key={todo.id}
-            className={todo.completed === false ? "redtext" : "blacktext"}
-          >
-            <TodoItem
-              id={todo.id}
-              key={todo.id}
-              title={todo.title}
-              checked={todo.completed}
-              handleChange={() => handleChange(todo.id)}
-              removeTodo={() => handleRemoveTodo(todo.id)}
-            />
-          </div>
-        ))}
-      </ul>
-    </div>
+            title={todo.title}
+            checked={todo.completed}
+            handleChange={() => handleChange(todo.id)}
+            removeTodo={() => handleRemoveTodo(todo.id)}
+          />
+        </div>
+      ))}
+    </Box>
   );
 };
 

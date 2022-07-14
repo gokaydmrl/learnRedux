@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../redux/todoSlice";
+import AddIcon from "@mui/icons-material/Add";
+import { Button } from "@mui/material";
 
 const AddTodoForm = () => {
   const [title, setTitle] = useState("");
@@ -15,6 +17,7 @@ const AddTodoForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addTodo({ title: title }));
+    setTitle("");
   };
 
   return (
@@ -25,7 +28,9 @@ const AddTodoForm = () => {
           value={title}
           onChange={handleChange}
         />
-        <button type="submit"> ekle </button>
+        <Button type="submit" size="small" color="secondary">
+          <AddIcon />
+        </Button>
       </form>
     </div>
   );
